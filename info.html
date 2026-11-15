@@ -50,6 +50,15 @@
   .acc-feature-list { list-style: none; padding: 0; margin: 0; }
   .acc-feature-list li { margin-bottom: 10px; }
   .acc-feature-label { font-weight: 700; }
+  #acc-statistik.open { max-height: 8000px; }
+  #acc-mannschaft.open { max-height: 2000px; }
+  #acc-spielberechtigung.open { max-height: 2000px; }
+  .jahrgang-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 4px; }
+  .jahrgang-table th, .jahrgang-table td { padding: 7px 6px; text-align: left; border-bottom: 1px solid rgba(144,149,176,0.18); }
+  .jahrgang-table th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.6; font-weight: 700; }
+  .jahrgang-table td:first-child { font-weight: 700; }
+  .jahrgang-legend { font-size: 0.78rem; opacity: 0.7; margin-top: 10px; }
+  .jahrgang-link { color: inherit; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; cursor: pointer; }
 </style>
 
 <div class="accordion-item">
@@ -59,7 +68,7 @@
   </button>
   <div class="accordion-body" id="acc-ueber">
     <div class="accordion-body-inner">
-      <p>Aktuelle Spielplandaten des TV Feldmark Dorsten – direkt vom Verband.</p>
+      <p>Aktuelle Spielplandaten des TC Grün-Weiß Neuenkirchen – direkt vom Verband.</p>
       <p>Tipp: App zum Homescreen hinzufügen für schnellen Zugriff ohne Browser.</p>
     </div>
   </div>
@@ -142,6 +151,87 @@
         <li>Aktiviere <strong>Vorbei</strong>, <strong>Heim</strong> und <strong>Auswärts</strong></li>
         <li>Tippe auf ein <strong>Ergebnis</strong> für den Spielbericht oder auf <strong>Tabelle</strong> für die Tabelle</li>
       </ol>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-btn" data-target="acc-statistik"
+    onclick="toggleAccordion('acc-statistik'); loadStatistik();">
+    Spielerstatistik
+    <span class="accordion-arrow">▼</span>
+  </button>
+  <div class="accordion-body" id="acc-statistik">
+    <div class="accordion-body-inner">
+      <div id="statistik-container">
+        <div class="loading-row"><div class="spinner"></div>Wird beim Öffnen geladen …</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-btn" data-target="acc-mannschaft"
+    onclick="toggleAccordion('acc-mannschaft'); loadMannschaft();">
+    Mannschaftsstatistik
+    <span class="accordion-arrow">▼</span>
+  </button>
+  <div class="accordion-body" id="acc-mannschaft">
+    <div class="accordion-body-inner">
+      <div id="mannschaft-container"></div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-btn" data-target="acc-spielberechtigung" onclick="toggleAccordion('acc-spielberechtigung')">
+    Spielberechtigung für Jugendmannschaften
+    <span class="accordion-arrow">▼</span>
+  </button>
+  <div class="accordion-body" id="acc-spielberechtigung">
+    <div class="accordion-body-inner">
+      <p><strong>Hinweis:</strong> In der Wintersaison können im WTV-Bezirk Münsterland nur Mannschaften der Altersklassen U12, U15 und U18 gemeldet werden.</p>
+      <table class="jahrgang-table">
+        <thead>
+          <tr><th>Altersklasse</th><th>Winter 2026/27</th><th>Sommer 2027</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>U8</td><td>—</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U8','2019, 2020, 2021','','')">2019, 2020, 2021</span></td></tr>
+          <tr><td>U9</td><td>—</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U9','2018','2019, 2020, 2021','')">2018 (2019, 2020, 2021)</span></td></tr>
+          <tr><td>U10</td><td>—</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U10','2017','2018','')">2017 (2018)</span></td></tr>
+          <tr><td>U12 Junioren</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U12 Junioren','2015, 2016','2017','m')">2015, 2016 (2017)</span></td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U12 Junioren','2015, 2016','2017','m')">2015, 2016 (2017)</span></td></tr>
+          <tr><td>U12 Juniorinnen</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U12 Juniorinnen','2015, 2016','2017','w')">2015, 2016 (2017)</span></td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U12 Juniorinnen','2015, 2016','2017','w')">2015, 2016 (2017)</span></td></tr>
+          <tr><td>Mixed U12</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('Mixed U12','2015, 2016','2017','')">2015, 2016 (2017)</span></td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('Mixed U12','2015, 2016','2017','')">2015, 2016 (2017)</span></td></tr>
+          <tr><td>U15 Junioren</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U15 Junioren','2012, 2013, 2014','2015, 2016','m')">2012, 2013, 2014 (2015, 2016)</span></td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U15 Junioren','2012, 2013, 2014','2015, 2016','m')">2012, 2013, 2014 (2015, 2016)</span></td></tr>
+          <tr><td>U15 Juniorinnen</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U15 Juniorinnen','2012, 2013, 2014','2015, 2016','w')">2012, 2013, 2014 (2015, 2016)</span></td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U15 Juniorinnen','2012, 2013, 2014','2015, 2016','w')">2012, 2013, 2014 (2015, 2016)</span></td></tr>
+          <tr><td>Mixed U15</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('Mixed U15','2012, 2013, 2014','2015, 2016','')">2012, 2013, 2014 (2015, 2016)</span></td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('Mixed U15','2012, 2013, 2014','2015, 2016','')">2012, 2013, 2014 (2015, 2016)</span></td></tr>
+          <tr><td>U18 Junioren</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U18 Junioren','2009, 2010, 2011','2012, 2013, 2014','m')">2009, 2010, 2011 (2012, 2013, 2014)</span></td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U18 Junioren','2009, 2010, 2011','2012, 2013, 2014','m')">2009, 2010, 2011 (2012, 2013, 2014)</span></td></tr>
+          <tr><td>U18 Juniorinnen</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U18 Juniorinnen','2009, 2010, 2011','2012, 2013, 2014','w')">2009, 2010, 2011 (2012, 2013, 2014)</span></td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('U18 Juniorinnen','2009, 2010, 2011','2012, 2013, 2014','w')">2009, 2010, 2011 (2012, 2013, 2014)</span></td></tr>
+          <tr><td>Mixed U18</td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('Mixed U18','2009, 2010, 2011','2012, 2013, 2014','')">2009, 2010, 2011 (2012, 2013, 2014)</span></td>
+            <td><span class="jahrgang-link" onclick="showJahrgang('Mixed U18','2009, 2010, 2011','2012, 2013, 2014','')">2009, 2010, 2011 (2012, 2013, 2014)</span></td></tr>
+        </tbody>
+      </table>
+      <p class="jahrgang-legend"><em>Jahrgänge in Klammern spielen eine Klasse höher als ihre originäre Altersklasse (maximal eine Klasse).</em></p>
     </div>
   </div>
 </div>
