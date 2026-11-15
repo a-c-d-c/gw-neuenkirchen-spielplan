@@ -30,7 +30,7 @@
 
   .header { text-align: center; margin-bottom: 0; padding-top: env(safe-area-inset-top); padding-bottom: 20px; position: sticky; top: 0; z-index: 5; background: #0f1117; }
   @media (hover: hover) and (pointer: fine) { .header { padding-top: 18px; } }
-  .header-title { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 36px; }
+  .header-title { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px 36px 0; }
   .btn-info {
     position: absolute; top: env(safe-area-inset-top); right: 0;
     width: 28px; height: 28px;
@@ -920,7 +920,6 @@
   <button class="btn-refresh-header" id="btn-refresh" title="Neu laden" onclick="refreshData()">↺</button>
   <button class="btn-info" onclick="showInfo()" title="Info">i</button>
   <div class="header-title">
-    <img src="logo.png" class="header-logo" alt="TC Grün-Weiß Neuenkirchen Logo" onerror="this.style.display='none'">
     <h1>TC Grün-Weiß Neuenkirchen</h1>
   </div>
   <p id="header-sub">Spielplan · Münsterland</p>
